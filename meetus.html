@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+	<link rel="stylesheet" href="https://use.typekit.net/xcc5lpj.css">
+	<title>Meet Us</title>
+</head>
+<body>
+	<nav class="navbar">
+		<a href="homepage.html"><img src="images/logo.png" class="logo" class="logo"></a>
+		<img src="images/profile.png" onclick="openForm()" class="prof navlink">
+		<a href="findus.html" class="navlink">find us</a>
+		<a href="services.html" class="navlink">our services</a>
+		<a href="meetus.html" class="navlink" style="color: #c090dba3">meet us</a>
+	</nav>
+	<h1><img src="images/dogw.png" id="icon" style="height: 35px"> Get to know our Team</h1>
+	<div class="profile_box">
+		<div class="img person1">
+			<h4>Meet Chloe</h4>
+			<div class="profile_info"><h3>Dr Chloe Smith - Veterenarian</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscin ut labor. Nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<p>Oluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur qui officia deserunt mollit anim id est e et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud consequat. Duis aute irure dolor in repr.</p>
+		</div>
+		</div>
+		<div class="img person2">
+			<h4>Meet Savannah</h4>
+			<div class="profile_info"><h3>Dr Savannah Gris - Principle Veterenarian</h3><p>Lorem ipsum dolor sit amet, incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>Oluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint  labore et doloren voluptate velit esse cilluorum.</p>
+				</div>
+		</div>
+		<div class="img person3">
+			<h4>Meet Rob</h4>
+			<div class="profile_info" style="background-color: rgba(0, 0, 0, 0.570) "><h3>Rob Script - Veterenarian Nurse</h3><p>Lorem ips nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>Oluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</div>
+		</div>
+		<div class="img person4">
+			<h4>Meet Bel</h4>
+			<div class="profile_info"><h3>Bel Truman - Practice Manager</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, magna aliqua. Ut eniiam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>Oluptate. Excepteur sint occaecat cupidatat non proident, aliqua. Uostrud exercitation nisi ut aliquip ex ea commodo consequat. Excepteur sint non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</div>
+		</div>
+	</div>
+	<div class="aboutus">
+		<h1 style="color: white">About Us</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sm.</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.</p>
+	<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beataeLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+	</div>
+	<div class="form-popup" id="myForm">
+		<form class="form-container" action="user.php" method="POST" enctype='multipart/form-data'>
+			<button type="button" class="cancel" onclick="closeForm()">x</button><br><br>
+			<button type="button" class="btn" onclick="loginForm()">Log In</button>
+			<h1>Create Account</h1>
+			<label for="first_name"><b>First Name:</b></label><br>
+			<input type="text" placeholder="Enter your first name" name="first_name" required><br>
+			<label for="surname"><b>Surname:</b></label><br>
+			<input type="text" placeholder="Enter your last name" name="surname" required><br>
+			<label for="password"><b>Password:</b></label><br>
+			<input type="password" placeholder="********" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" onfocus="passwordpopup()" onblur="passwordhide()" required><br>
+			<p class="passm" id="passmessage">Password must contain uppercase & lowercase letters, a symbol and it must be 6 characters long</p>
+			<label for="phone"><b>Phone Number:</b></label><br>
+			<input type="tel" placeholder="xxxx xxx xxx" name="phone" pattern="[0-9]{4} [0-9]{3} [0-9]{3}"required><br>
+			<label for="e-mail"><b>E-mail:</b></label><br>
+			<input type="email" placeholder="jon@mail.com" name="e-mail" size="30" required><br>
+			<label for="suburb"><b>Suburb:</b></label><br>
+			<input type="text" placeholder="Enter the name of your suburb" name="suburb" id ="suburb" required><br>
+			<label for="postcode"><b>Postcode:</b></label><br>
+			<input type="text" placeholder="Enter your postcode" name="postcode" id="postcode" pattern="[0-9]{4}" required><br>
+			<label for="dog_name"><b>Dog's Name:</b></label><br>
+			<input type="text" placeholder="Enter your dog's name" name="dog_name" required><br>
+			<label for="dog_breed"><b>Dog Breed:</b></label><br>
+			<input type="text" placeholder="Enter your dog's breed" name="dog_breed" required><br>
+			<label for="dog_age"><b>Dog's Age:</b></label><br>
+			<input type="number" placeholder="Enter your dog's age in human years" name="dog_age" required><br>
+			<label for="dog_gender"><b>Dog's Gender:</b></label><br>
+			<input type="radio" name="dog_gender" id="female" value="female">
+			<label for="female">Female</label>
+			<input type="radio" name="dog_gender" id="male" value="male">
+			<label for="male">Male</label><br>
+			<label for="image"><b>Upload a picture of your pet:</b></label><br>
+			<input type="file" name="image" required><br><br>
+			<button type="submit" class="btn">Submit</button>
+		</form>
+	</div>
+	<div class="form-popup" id="myLogin">
+		<form class="form-container" action="login.php" method="POST">
+			<button type="button" class="cancel" onclick="back()">&lt;</button>
+			<h1>User Login</h1>
+			<label for="e-mail"><b>E-mail:</b></label><br>
+			<input type="email" placeholder="jon@mail.com" name="e-mail" size="30" required><br>
+			<label for="password"><b>Password:</b></label><br>
+			<input type="password" placeholder="********" name="password" required><br><br>
+			<button type="submit" class="btn">Log In</button>
+			</form>
+			</div>
+	<footer class="footer">
+		<div classs="container">
+			<div class="socials">
+				<h2>Connect with us:</h2>
+				<a href="https://www.instagram.com"><img src="images/insta.png" class="sociallinks"></a>
+				<a href="https://www.facebook.com"><img src="images/facebook.png" class="sociallinks"></a>
+				<a href="https://twitter.com"><img src="images/twitter.png" class="sociallinks"></a>
+			</div>
+			<div class="socials">
+				<a href="findus.html"><img src="images/contact.png" id="contactbox"></a>
+			</div>
+		</div>
+		<div class="logofooter">
+			<img src="images/whitelogo.png" id="footerlogo">
+		</div>
+	</footer>
+</body>
+<script type="text/javascript" src="betterpets.js"></script>
+</html>
