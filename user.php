@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 'on');
+ini_set('log_errors', 'on');
+ini_set('display_startup_errors', 'on');
+ini_set('error_reporting', E_ALL);
 include "connect.php";
 
 if (isset($_POST['first_name']) || isset($_POST['surname']) || isset($_POST['password']) || isset($_POST['phone']) ||
@@ -58,5 +62,5 @@ if (mysqli_query($conn, $query1)) {
     echo '<script>console.log("Error: " . mysqli_error($conn));
     location.href= "http://localhost:8888/BetterPets/homepage.html#mainimage"</script>';
 }
-mysqli_close($conn);
+
 ?>

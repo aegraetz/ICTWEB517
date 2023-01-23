@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 'on');
+ini_set('log_errors', 'on');
+ini_set('display_startup_errors', 'on');
+ini_set('error_reporting', E_ALL);
 include "connect.php";
 
 if (isset($_POST['e-mail']) || isset($_POST['password'])) {
@@ -14,8 +18,23 @@ $hash = $row['User_Password'];
 $verify = password_verify($loginpassword, $hash);
 if ($verify) {
 	session_start();
+	$ownerinfo = "SELECT * FROM user_info WHERE Email = '{$_SESSION["userid"]}'";
+	$result = mysqli_query($conn, $ownerinfo);
+	$row = mysqli_fetch_row($result);
+	$ownername = $row[0];
+	$phone = $row[3];
+	$dogname = $row[7];
+	$dogbreed = $row[8];
+	$dogage = $row[9];
+	$doggender = $row[10];
 	$_SESSION["loggedin"] = true;
 	$_SESSION["userid"] = $loginemail;
+	$_SESSION["username"] = $ownername;
+	$_SESSION["phone"] = $phone;
+	$_SESSION["dogname"] = $dogname;
+	$_SESSION["dogbreed"] = $dogbreed;
+	$_SESSION["dogage"] = $dogage;
+	$_SESSION["doggender"] = $doggender;
 	echo '<script>console.log("Password verified");
 	location.href= "http://localhost:8888/BetterPets/playdate.php";
 	</script>';

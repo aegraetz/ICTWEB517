@@ -7,28 +7,22 @@
 	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	<link rel="stylesheet" href="https://use.typekit.net/xcc5lpj.css">
 	<?php
+	ini_set('display_errors', 'on');
+	ini_set('log_errors', 'on');
+	ini_set('display_startup_errors', 'on');
+	ini_set('error_reporting', E_ALL);
 	include "connect.php";
 	session_start();
-	$ownerinfo = "SELECT * FROM user_info WHERE Email = '{$_SESSION["userid"]}'";
-	$result = mysqli_query($conn, $ownerinfo);
-	$row = mysqli_fetch_row($result);
-	$ownername = $row[0];
-	$phone = $row[3];
-	$dogname = $row[7];
-	$dogbreed = $row[8];
-	$dogage = $row[9];
-	$doggender = $row[10];
-
 	$breeds = "SELECT User_Firstname, Dog_Name, Dog_Image, Phone_no FROM user_info
-				WHERE Dog_Breed = '{$dogbreed}' && Phone_no != '{$phone}'";
+				WHERE Dog_Breed = '{$_SESSION["dogbreed"]}' && Phone_no != '{$_SESSION["phone"]}'";
 	$res1 = mysqli_query($conn, $breeds);
 
 	$ages = "SELECT User_Firstname, Dog_Name, Dog_Image, Phone_no FROM user_info
-				WHERE Dog_Age = '{$dogage}' && Phone_no != '{$phone}'";
+				WHERE Dog_Age = '{$_SESSION["dogage"]}' && Phone_no != '{$_SESSION["phone"]}'";
 	$res2 = mysqli_query($conn, $ages);
 
 	$genders = "SELECT User_Firstname, Dog_Name, Dog_Image, Phone_no FROM user_info
-					WHERE Dog_Gender = '{$doggender}' && Phone_no != '{$phone}'";
+					WHERE Dog_Gender = '{$_SESSION["doggender"]}' && Phone_no != '{$_SESSION["phone"]}'";
 	$res3 = mysqli_query($conn, $genders);
 	?>
 	<title>Puppy Play Dates</title>
@@ -38,7 +32,7 @@
 		<a href="homepage.html"><img src="images/pdlogo.png" class="pdlogo"></a>
 		<a href="homepage.html" class= "pdnavlink">log out</a>
 		<a href="findus.html" class= "pdnavlink">contact us</a>
-		<a class="pdname">Welcome, <?php echo $ownername; ?>!</a>
+		<a class="pdname">Welcome, <?php echo $_SESSION["username"]; ?>!</a>
 	</nav>
 	<div class="invite-popup" id="inviteForm">
 		<form class="invite-container" action="invites.php" method="POST">
@@ -49,8 +43,6 @@
 			<label id="pdlabel" for="time">Please select a time:</label>
 			<input id="pdinput" type="time" name="time" required>
 			<input id="inviteeid" type="hidden" name="id">
-			<input id="invitername" type="hidden" name="inviter" value="<?php $ownername; ?>">
-			<input id="inviterno" type="hidden" name="inviter_no" value="<?php $phone; ?>">
 			<button type="submit" class="pdbtn">Submit</button>
 			<label id="pdlabel" for="button">*Please note that if your invitation is accepted, the invitee will recieve 
 											your name and phone number.
@@ -58,9 +50,9 @@
 	</div>
 	<div class="pdbanner">
 		<img src="images/playdateleft.png" class="pdimage">
-		<h1>Organise a play date for <?php  echo $dogname; ?>:</h1>
+		<h1>Organise a play date for <?php  echo $_SESSION["dogname"]; ?>:</h1>
 	</div>
-		<h5> Pick a play mate for <?php  echo $dogname; ?> based on one of the following options:</h5>
+		<h5> Pick a play mate for <?php  echo $_SESSION["dogname"]; ?> based on one of the following options:</h5>
 		<div class="sortdogs">
 		<button class="selectmatch" onclick="pullInfo(1)">Same Breed </button>
 		<button class="selectmatch" onclick="pullInfo(2)">Same Age </button>
