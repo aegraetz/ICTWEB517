@@ -42,7 +42,7 @@ if ($verify) {
 	echo '<script>console.log("Incorrect password");</script>';
 	mysqli_close($conn);
 	echo '<script type="text/javascript">alert("Incorrect e-mail or password. Please try again or create an account");
-	location.href= "http://localhost:8888/BetterPets/homepage.html";
+	location.href= "http://localhost:8888/BetterPets/homepage.php";
 	</script>';
 }
 ?>

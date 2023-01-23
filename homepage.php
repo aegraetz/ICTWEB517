@@ -6,55 +6,33 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	<link rel="stylesheet" href="https://use.typekit.net/xcc5lpj.css">
-	<title>Find Us</title>
+	<title>Home</title>
 </head>
 <body>
+	<?php
+	session_destroy();
+	?>
 	<nav class="navbar">
-		<a href="homepage.php"><img src="images/logo.png" class="logo" class="logo"></a>
+		<a href="homepage.php"><img src="images/logo.png" class="logo"></a>
 		<img src="images/profile.png" onclick="openForm()" class="prof navlink">
-		<a href="findus.html" class="navlink" style="color: #c090dba3">find us</a>
+		<a href="findus.html" class="navlink">find us</a>
 		<a href="services.html" class="navlink">our services</a>
 		<a href="meetus.html" class="navlink">meet us</a>
 	</nav>
-	<h1><img src="images/dogw.png" id="icon" style="height: 35px"> Come visit us</h1>
-	<div class="mapouter">
-		<div class="gmap_canvas">
-			<iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=3%20animal%20road,%20vetville,%20adelaide%20&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-		</div>
+	<div class="landing">
+		<img src="images/maindog.jpg" id="mainimage">
+		<bu type="button" id="userchoice" onclick="changeusertype()"><img src="images/dogwhite.png" height="25px"> or <img src="images/catwhite.png" height="25px"> or <img src="images/cdw.png" height="25px">?</button>
 	</div>
-	<div class="findpage">
-		<div class="openhours">
-			<table id="opening">
-				<th colspan="2">Opening Hours:</th>
-					<tr>
-						<td>Mon - Fri</td>
-						<td>8am - 5pm</td>
-					</tr>
-					<tr>
-						<td>Saturday</td>
-						<td>9am - 4pm</td>
-					</tr>
-					<tr>
-						<td>Sunday</td>
-						<td>Closed</td>
-					</tr>
-			</table>
+	<div class="options">
+		<div class="column first">
+			<a href="findus.html"><img src="images/find.png" class="imagelink"></a>
 		</div>
-		<table id="contactinfo">
-		<th colspan="2">Contact Us:</th>
-					<tr>
-						<td>Phone:</td>
-						<td><a href="tel: 8200000000">8200 000 000</a></td>
-					</tr>
-					<tr>
-						<td>E-mail:</td>
-						<td><a href="mailto: hello@betterpets.com">hello@betterpets.com</a></td>
-					</tr>
-					<tr>
-						<td>Address:</td>
-						<td><a href="https://goo.gl/maps/JH4yBy9DnhmYPSQr8">3 Animal Rd, Vetville, SA</a></td>
-					</tr>
-			</table>
+		<div class="column second">
+			<a href="services.html"><img src="images/services.png" class="imagelink"></a>
+		</div>
+		<div class="column">
+			<a href="meetus.html"><img src="images/meet.png" class="imagelink"></a>
+		</div>
 	</div>
 	<div class="form-popup" id="myForm">
 		<form class="form-container" action="user.php" method="POST" enctype='multipart/form-data'>
@@ -69,9 +47,9 @@
 			<input type="password" placeholder="********" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" onfocus="passwordpopup()" onblur="passwordhide()" required><br>
 			<p class="passm" id="passmessage">Password must contain uppercase & lowercase letters, a symbol and it must be 6 characters long</p>
 			<label for="phone"><b>Phone Number:</b></label><br>
-			<input type="tel" placeholder="xxxx xxx xxx" name="phone" pattern="[0-9]{4} [0-9]{3} [0-9]{3}"required><br>
+			<input type="tel" placeholder="0400123456" name="phone" pattern="[0]{1}[0-9]{9}"required><br>
 			<label for="e-mail"><b>E-mail:</b></label><br>
-			<input type="email" placeholder="jon@mail.com" name="e-mail" size="30" required><br>
+			<input type="email" placeholder="jon@mail.com" name="e-mail" required><br>
 			<label for="suburb"><b>Suburb:</b></label><br>
 			<input type="text" placeholder="Enter the name of your suburb" name="suburb" id ="suburb" required><br>
 			<label for="postcode"><b>Postcode:</b></label><br>

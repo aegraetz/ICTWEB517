@@ -595,20 +595,14 @@ td.matchtable {
 	}
 }
 
-#breedtable {
+#breedtable, #agetable, #gendertable {
 	display: none;
 	justify-content: center;
 	text-align: center;
 }
 
-#agetable {
-	display: none;
-	justify-content: center;
-	text-align: center;
-}
-
-#gendertable {
-	display: none;
+#invitedtable, #invitestable {
+	display: flex;
 	justify-content: center;
 	text-align: center;
 }

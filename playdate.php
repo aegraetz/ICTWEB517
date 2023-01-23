@@ -15,23 +15,20 @@
 	session_start();
 	$breeds = "SELECT User_Firstname, Dog_Name, Dog_Image, Phone_no FROM user_info
 				WHERE Dog_Breed = '{$_SESSION["dogbreed"]}' && Phone_no != '{$_SESSION["phone"]}'";
-	$res1 = mysqli_query($conn, $breeds);
 
 	$ages = "SELECT User_Firstname, Dog_Name, Dog_Image, Phone_no FROM user_info
 				WHERE Dog_Age = '{$_SESSION["dogage"]}' && Phone_no != '{$_SESSION["phone"]}'";
-	$res2 = mysqli_query($conn, $ages);
 
 	$genders = "SELECT User_Firstname, Dog_Name, Dog_Image, Phone_no FROM user_info
 					WHERE Dog_Gender = '{$_SESSION["doggender"]}' && Phone_no != '{$_SESSION["phone"]}'";
-	$res3 = mysqli_query($conn, $genders);
 	?>
 	<title>Puppy Play Dates</title>
 </head>
 <body>
 	<nav class="navbar">
-		<a href="homepage.html"><img src="images/pdlogo.png" class="pdlogo"></a>
-		<a href="homepage.html" class= "pdnavlink">log out</a>
-		<a href="findus.html" class= "pdnavlink">contact us</a>
+		<a href="homepage.php"><img src="images/pdlogo.png" class="pdlogo"></a>
+		<a href="homepage.php" class= "pdnavlink">log out</a>
+		<a href="invitations.php" class= "pdnavlink">invitations</a>
 		<a class="pdname">Welcome, <?php echo $_SESSION["username"]; ?>!</a>
 	</nav>
 	<div class="invite-popup" id="inviteForm">
@@ -63,13 +60,7 @@
 				<th colspan="2" class="matchtable">Matches by Breed</th>
 			</tr>
 			<?php
-			if (!$rows=mysqli_fetch_assoc($res1)) {
-						?>
-						<tr>
-							<td colspan="2">Sorry no matches by breed were found</td>
-						</tr>
-			<?php
-			}
+			if ($res1 = mysqli_query($conn, $breeds)) {
 				while ($rows=mysqli_fetch_assoc($res1)) {
 			?>
 			<tr>
@@ -80,20 +71,15 @@
 				</tr>
 				<?php
 				}
-				?>
+			} 
+			?>
 		</table>
 		<table id="agetable">
 			<tr>
 			<th colspan="2" class="matchtable">Matches by Age</th>
 			</tr>
 			<?php
-			if (!$rows=mysqli_fetch_assoc($res2)) {
-						?>
-						<tr>
-							<td colspan="2">Sorry no matches by age were found</td>
-						</tr>
-			<?php
-					}
+			if ($res2 = mysqli_query($conn, $ages)) {
 				while ($rows=mysqli_fetch_assoc($res2)) {
 			?>
 			<tr>
@@ -104,6 +90,7 @@
 				</tr>
 				<?php
 				}
+			}
 				?>
 		</table>
 		<table id="gendertable">
@@ -111,13 +98,7 @@
 			<th colspan="2" class="matchtable">Matches by Gender</th>
 			</tr>
 			<?php
-			if (!$rows=mysqli_fetch_assoc($res3)) {
-						?>
-						<tr>
-							<td colspan="2">Sorry no matches by gender were found</td>
-						</tr>
-			<?php
-			}
+			if ($res3 = mysqli_query($conn, $genders)) {
 				while ($rows=mysqli_fetch_assoc($res3)) {
 			?>
 			<tr>
@@ -128,6 +109,7 @@
 				</tr>
 				<?php
 				}
+			}
 				?>
 		</table>
 	<footer class="pdfooter">

@@ -45,6 +45,7 @@ else {
       $query2 = "CREATE TABLE IF NOT EXISTS playdates (
         Inviter_name VARCHAR(45) NOT NULL,
         Inviter_no INT(10) NOT NULL,
+        Inviter_dog VARCHAR(45) NOT NULL,
         Play_date DATE NOT NULL,
         Play_time TIME(5) NOT NULL,
         Invitee_name VARCHAR(45) NOT NULL,

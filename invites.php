@@ -12,6 +12,7 @@ if (isset($_POST['date']) || isset($_POST['time']) || isset($_POST['id'])) {
 			$invitee_no = $_POST['id'];
 			$inviter = $_SESSION['username'];
 			$inviter_no = $_SESSION['phone'];
+			$inviter_dog = $_SESSION['dogname'];
 } else {
 	echo '<script>alert("Something went wrongs!");</script>';
 }
@@ -21,10 +22,9 @@ $row = mysqli_fetch_assoc($result);
 $invitee = $row['User_Firstname'];
 $date_created = date('d-m-y');
 $response = "No Reply";
-echo '<script>console.log(`'. $inviter . "\n" . $inviter_no. "\n" . $play_date . "\n" . $play_time . "\n" . $invitee . "\n" . $invitee_no . "\n" . $date_created .'`); </script>';
 $query = "INSERT INTO playdates (Inviter_name, Inviter_no, Play_date, Play_time, Invitee_name,
-			Invitee_no, Response, Date_created) VALUES ('$inviter', '$inviter_no', '$play_date',
-			'$play_time', '$invitee', '$invitee_no', '$response', '$date_created')";
+			Invitee_no, Response, Date_created, Inviter_dog) VALUES ('$inviter', '$inviter_no', '$play_date',
+			'$play_time', '$invitee', '$invitee_no', '$response', '$date_created', '$inviter_dog')";
 if (mysqli_query($conn, $query)) {
     echo '<script>console.log("Success");
     alert("Success! An invitation has been sent. Check back for a response.");
