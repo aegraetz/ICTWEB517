@@ -14,13 +14,13 @@
 	include "connect.php";
 	session_start();
 	$breeds = "SELECT User_Firstname, Dog_Name, Dog_Image, Phone_no FROM user_info
-				WHERE Dog_Breed = '{$_SESSION["dogbreed"]}' && Phone_no != '{$_SESSION["phone"]}'";
+				WHERE Dog_Breed = '{$_SESSION['dogbreed']}' && Phone_no != '{$_SESSION["phone"]}'";
 
 	$ages = "SELECT User_Firstname, Dog_Name, Dog_Image, Phone_no FROM user_info
-				WHERE Dog_Age = '{$_SESSION["dogage"]}' && Phone_no != '{$_SESSION["phone"]}'";
+				WHERE Dog_Age = '{$_SESSION['dogage']}' && Phone_no != '{$_SESSION["phone"]}'";
 
 	$genders = "SELECT User_Firstname, Dog_Name, Dog_Image, Phone_no FROM user_info
-					WHERE Dog_Gender = '{$_SESSION["doggender"]}' && Phone_no != '{$_SESSION["phone"]}'";
+					WHERE Dog_Gender = '{$_SESSION['doggender']}' && Phone_no != '{$_SESSION["phone"]}'";
 	?>
 	<title>Puppy Play Dates</title>
 </head>
@@ -60,8 +60,8 @@
 				<th colspan="2" class="matchtable">Matches by Breed</th>
 			</tr>
 			<?php
-			if ($res1 = mysqli_query($conn, $breeds)) {
-				while ($rows=mysqli_fetch_assoc($res1)) {
+			$res1 = mysqli_query($conn, $breeds);
+			while ($rows=mysqli_fetch_assoc($res1)) {
 			?>
 			<tr>
 				<td class="matchtable"><?php echo $rows['User_Firstname'];?>'s dog <?php echo $rows['Dog_Name'];?>
@@ -69,9 +69,8 @@
 				<td class="matchtable"><button class="selectmatch"
 				onclick="selectMatch(<?php echo $rows['Phone_no'];?>)">Invite for a play</button>
 				</tr>
-				<?php
-				}
-			} 
+			<?php
+			}
 			?>
 		</table>
 		<table id="agetable">
@@ -79,38 +78,36 @@
 			<th colspan="2" class="matchtable">Matches by Age</th>
 			</tr>
 			<?php
-			if ($res2 = mysqli_query($conn, $ages)) {
-				while ($rows=mysqli_fetch_assoc($res2)) {
+			$res2 = mysqli_query($conn, $ages);
+			while ($rows=mysqli_fetch_assoc($res2)) {
 			?>
 			<tr>
 				<td class="matchtable"><?php echo $rows['User_Firstname'];?>'s dog <?php echo $rows['Dog_Name'];?>
 				<br><?php echo"<img src='".$rows['Dog_Image']."' height='200px'>"?></td>
 				<td class="matchtable"><button class="selectmatch"
 				onclick="selectMatch(<?php echo $rows['Phone_no'];?>)">Invite for a play</button>
-				</tr>
-				<?php
-				}
+			</tr>
+			<?php
 			}
-				?>
+			?>
 		</table>
 		<table id="gendertable">
 			<tr>
 			<th colspan="2" class="matchtable">Matches by Gender</th>
 			</tr>
 			<?php
-			if ($res3 = mysqli_query($conn, $genders)) {
-				while ($rows=mysqli_fetch_assoc($res3)) {
+			$res3 = mysqli_query($conn, $genders);
+			while ($rows=mysqli_fetch_assoc($res3)) {
 			?>
 			<tr>
 				<td class="matchtable"><?php echo $rows['User_Firstname'];?>'s dog <?php echo $rows['Dog_Name'];?>
 				<br><?php echo"<img src='".$rows['Dog_Image']."' height='200px'>"?></td>
 				<td class="matchtable"><button class="selectmatch"
 				onclick="selectMatch(<?php echo $rows['Phone_no'];?>)">Invite for a play</button>
-				</tr>
-				<?php
-				}
+			</tr>
+			<?php
 			}
-				?>
+			?>
 		</table>
 	<footer class="pdfooter">
 		<div classs="container">

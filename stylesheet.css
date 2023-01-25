@@ -312,7 +312,7 @@ h4 {
 	justify-content: center;
 }
 
-table {
+table:not(#invitedtable, #invitestable) {
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	color: #676667;
 	padding: 50px;
@@ -426,13 +426,13 @@ th {
 	background-color: rgba(225, 225, 225, 0.852);
   }
   
-  label {
+  label:not(#res, #reslab){
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	font-size: 14px;
 	color:#3f3f3f;
   }
 
-  input:not(#male, #female) {
+  input:not(#male, #female, #res) {
 	height: 25px;
 	width: 98%;
 	padding: 3px;
@@ -539,12 +539,29 @@ td.matchtable {
 	font-family: gambado-sans;
   }
 
+  td.matchtable1 {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 20px;
+	object-fit: contain;
+	font-size: 18px;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
   th.matchtable {
 	font-size: 27px;
 	color: #47295b;
 	padding-bottom: 20px;
+	font-family: gambado-sans;
   }
 
+  th.matchtable1 {
+	font-size: 23px;
+	color: #47295b;
+	padding-bottom: 17px;
+	font-family: gambado-sans;
+  }
 .selectmatch {
 	background-color: transparent;
 	border: 1px solid #47295b;
@@ -604,7 +621,8 @@ td.matchtable {
 #invitedtable, #invitestable {
 	display: flex;
 	justify-content: center;
-	text-align: center;
+	text-align:center;
+	color: #676667;
 }
 
 .invite-popup {
@@ -632,7 +650,7 @@ td.matchtable {
   }
 
 #pdinput {
-	color: rgb(95, 95, 95);
+	color: #5f5f5f;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	font-size: 15px;
 	margin-bottom: 15px;
@@ -655,3 +673,41 @@ td.matchtable {
 	font-size: 20px;
 	color:#ffffff;
   }
+
+td#reslab {
+	font-family: gambado-sans;
+	font-size: 15px;
+ }
+
+#res {
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	border-color: #47295b;
+	background-color: #ab65daab;
+	margin-right: 7px;
+	margin-left: 10px;
+	color: rgba(255, 255, 255, 0);
+}
+
+#res:hover {
+	border-color: #47295b;
+	background-color: #740abbd2;
+}
+
+#res:active {
+	border-color: #47295b;
+	background-color: #47295b;
+}
+
+#remove_row {
+	font-size: 13px;
+	padding-left: 4.5px;
+	padding-right: 4.5px;
+	color: black;
+	background-color: #a663d3ab;
+	border-width: 2px;
+	border-style:solid;
+	border-color: #ab65daab;
+	text-decoration: none;
+}

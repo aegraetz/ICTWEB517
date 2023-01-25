@@ -57,10 +57,10 @@ $query1 = "INSERT INTO user_info (User_Firstname, User_Surname, User_Password, P
 if (mysqli_query($conn, $query1)) {
     echo '<script>console.log("Success");
     alert("Success! Please use these details to log in");
-    location.href="http://localhost:8888/BetterPets/homepage.php#mainimage";</script>';
+    location.href="http://localhost/ICTWEB517/homepage.php#mainimage";</script>';
 } else {
     echo '<script>console.log("Error: " . mysqli_error($conn));
-    location.href= "http://localhost:8888/BetterPets/homepage.php#mainimage"</script>';
+    location.href= "http://localhost/ICTWEB517/homepage.php#mainimage"</script>';
 }
 
 ?>

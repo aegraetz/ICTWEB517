@@ -27,7 +27,7 @@ else {
       User_Firstname VARCHAR(45) NOT NULL,
       User_Surname VARCHAR(45) NOT NULL,
       User_Password VARCHAR(255) NOT NULL,
-      Phone_no INT(10) PRIMARY KEY NOT NULL,
+      Phone_no VARCHAR(10) PRIMARY KEY NOT NULL,
       Email VARCHAR(45) NOT NULL,
       Suburb VARCHAR(45) NOT NULL,
       Postcode INT(4) NOT NULL,
@@ -43,20 +43,21 @@ else {
         echo '<script>console.log("user table exists or created successfully"); </script>';
       }
       $query2 = "CREATE TABLE IF NOT EXISTS playdates (
+        ID int(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
         Inviter_name VARCHAR(45) NOT NULL,
         Inviter_no INT(10) NOT NULL,
         Inviter_dog VARCHAR(45) NOT NULL,
-        Play_date DATE NOT NULL,
+        Play_date VARCHAR(10) NOT NULL,
         Play_time TIME(5) NOT NULL,
         Invitee_name VARCHAR(45) NOT NULL,
         Invitee_no INT(10) NOT NULL,
         Response VARCHAR(8),
-        Date_created DATE NOT NULL)";
+        Date_created VARCHAR(10) NOT NULL)";
         if (!mysqli_query($conn, $query2)) {
             echo '<script>console.log("playdate table query failed") . mysqli_error($conn);</script>';
           } else {
             echo '<script>console.log("playdate table exists or created successfully"); </script>';
-          }
+        }
     }
   }
 }
