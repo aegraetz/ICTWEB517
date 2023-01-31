@@ -498,17 +498,17 @@ p.passm{
 	text-decoration: none;
   }
 
-  .pdlogo {
+.pdlogo {
 	margin-top: 13px;
 	width: 230px;
 	height: auto;
   }
 
-  .pdnavlink:hover {
+.pdnavlink:hover {
 	color: #47295b84;
   }
 
-  .pdfooter {
+.pdfooter {
 	overflow: hidden;
 	width: 100%;
 	height: 200px;

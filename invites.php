@@ -4,7 +4,6 @@ ini_set('log_errors', 'on');
 ini_set('display_startup_errors', 'on');
 ini_set('error_reporting', E_ALL);
 include "connect.php";
-date_default_timezone_set('Australia/Adelaide');
 session_start();
 if (isset($_POST['date']) || isset($_POST['time']) || isset($_POST['id'])) {
 			$play_date = $_POST['date'];
@@ -27,12 +26,11 @@ $query = "INSERT INTO playdates (Inviter_name, Inviter_no, Play_date, Play_time,
 			Invitee_no, Invitee_mail, Response, Date_created, Inviter_dog) VALUES ('$inviter', '$inviter_no', '$play_date',
 			'$play_time', '$invitee', '$invitee_no', '$email', '$response', '$date_created', '$inviter_dog')";
 if (mysqli_query($conn, $query)) {
-	echo '<script>console.log("Success");
-    alert("Success! An invitation has been sent. Please click "Send email" on the invitations page to notify your invitee.");
+    echo '<script>console.log("Success");
+    alert("Success! Invitation has been booked, please continue to the invitations page and press the send email button to notify your play date.");
     location.href="http://localhost/ICTWEB517/invitations.php";</script>';
 } else {
-    echo '<script>alert("Error");
+    echo '<script>console.log("Error: " . mysqli_error($conn));
     location.href= "http://localhost/ICTWEB517/playdate.php"</script>';
 }
-mysqli_close($conn);
 ?>
