@@ -51,6 +51,7 @@ else {
         Play_time TIME(5) NOT NULL,
         Invitee_name VARCHAR(45) NOT NULL,
         Invitee_no INT(10) NOT NULL,
+        Invitee_mail VARCHAR(100) NOT NULL,
         Response VARCHAR(8),
         Date_created VARCHAR(10) NOT NULL)";
         if (!mysqli_query($conn, $query2)) {

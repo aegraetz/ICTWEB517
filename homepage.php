@@ -7,11 +7,11 @@
 	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	<link rel="stylesheet" href="https://use.typekit.net/xcc5lpj.css">
 	<title>Home</title>
-</head>
-<body>
 	<?php
 	session_destroy();
 	?>
+</head>
+<body>
 	<nav class="navbar">
 		<a href="homepage.php"><img src="images/logo.png" class="logo"></a>
 		<img src="images/profile.png" onclick="openForm()" class="prof navlink">

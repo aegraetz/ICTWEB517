@@ -22,7 +22,7 @@
 	}
 	$invites = "SELECT ID, Inviter_name, Inviter_no, Inviter_dog, Play_date, LEFT(Play_time, 5)as F_Play_time, Response FROM playdates
 				WHERE Invitee_name = '{$_SESSION["username"]}'";
-	$inv = "SELECT Invitee_name, Invitee_no, Play_date, LEFT(Play_time, 5) as F_Play_time, Response FROM playdates
+	$inv = "SELECT Invitee_name, Invitee_no, Invitee_mail, Play_date, LEFT(Play_time, 5) as F_Play_time, Response FROM playdates
 					WHERE Inviter_name = '{$_SESSION["username"]}'";
 	?>
 	<title>Puppy Play Dates</title>
@@ -144,20 +144,20 @@
 			<tr>
 				<td class="matchtable1"><?php echo $rows['Invitee_name'];?></td>
 				<td class="matchtable1"><?php echo $rows['Play_date'];?><br>at <?php echo $rows['F_Play_time'];?></td>
+				<td class="matchtable1"><?php echo $rows['Response'];?>
 				<?php 
 				if ($rows['Response'] === 'Accepted') {
 				?>
-					<td class="matchtable1"><?php echo $rows['Response'];?>
 					<br>(<?php echo $rows['Invitee_name'];?>'s phone<br> no:<?php echo $rows['Invitee_no'];?>)</td>	
 				<?php
-				} else {
+				} else if ($rows['Response'] === 'No Reply') {
 				?>
-					<td class="matchtable1"><?php echo $rows['Response'];?></td>
-				</tr>
+					<br><input type="button" onclick="window.open('mailto:<?php echo $rows['Invitee_mail'];?>?subject=Invitation for a Puppy Play Date&body=Hi <?php echo $rows['Invitee_name'];?>!%0D%0A%0D%0AYour dog has recieved an invitation to play! Please login to your BetterPets Puppy Play Dates account to view details and respond (http://localhost/ICTWEB517/invitations.php).%0D%0A%0D%0ASincerely,%0D%0AThe BetterPets Team');" value="Send Email" /></td>	
+			</tr>
 			<?php
-			}
+				}
 		}
-			?>
+		?>
 	</table>
 	<footer class="pdfooter">
 		<div classs="container">

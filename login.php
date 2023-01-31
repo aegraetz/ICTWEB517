@@ -4,7 +4,6 @@ ini_set('log_errors', 'on');
 ini_set('display_startup_errors', 'on');
 ini_set('error_reporting', E_ALL);
 include "connect.php";
-
 if (isset($_POST['e-mail']) || isset($_POST['password'])) {
 			$loginemail = $_POST['e-mail'];
             $loginpassword = $_POST['password'];
@@ -18,6 +17,8 @@ $hash = $row['User_Password'];
 $verify = password_verify($loginpassword, $hash);
 if ($verify) {
 	session_start();
+	$_SESSION["loggedin"] = true;
+	$_SESSION["userid"] = $loginemail;
 	$ownerinfo = "SELECT * FROM user_info WHERE Email = '{$_SESSION["userid"]}'";
 	$result = mysqli_query($conn, $ownerinfo);
 	$row = mysqli_fetch_row($result);
@@ -27,8 +28,6 @@ if ($verify) {
 	$dogbreed = $row[8];
 	$dogage = $row[9];
 	$doggender = $row[10];
-	$_SESSION["loggedin"] = true;
-	$_SESSION["userid"] = $loginemail;
 	$_SESSION["username"] = $ownername;
 	$_SESSION["phone"] = $phone;
 	$_SESSION["dogname"] = $dogname;
@@ -41,7 +40,7 @@ if ($verify) {
 } else {
 	echo '<script>console.log("Incorrect password");</script>';
 	mysqli_close($conn);
-	echo '<script type="text/javascript">alert("Incorrect e-mail or password. Please try again or create an account");
+	echo '<script>alert("Incorrect e-mail or password. Please try again or create an account");
 	location.href= "http://localhost/ICTWEB517/homepage.php";
 	</script>';
 }
