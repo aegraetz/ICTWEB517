@@ -51,18 +51,17 @@
 			<tr>
 			<form method="post">
 				<td class="matchtable1"><?php echo $rows['Inviter_name'];?>'s dog <br><?php echo $rows['Inviter_dog'];?>
-				would like to play</td>
+				would like to play
 				<input type="hidden" name="inviter" value=<?php echo $rows['Inviter_name'];?>>
-				<input type="hidden" name="inviter_ph" value=<?php echo $rows['Inviter_ph'];?>>
-				<td class="matchtable1"> <?php echo $rows['Play_date'];?><br>at <?php echo $rows['F_Play_time'];?></td>
-				<input type="hidden" name="date" value=<?php echo $rows['Play_date'];?>>
+				<input type="hidden" name="inviter_ph" value=<?php echo $rows['Inviter_ph'];?>></td>
+				<td class="matchtable1"> <?php echo $rows['Play_date'];?><br>at <?php echo $rows['F_Play_time'];?>
+				<input type="hidden" name="date" value=<?php echo $rows['Play_date'];?>></td>
 				<?php
 					if ($rows['Response'] === 'No Reply') {
 				?>
-				<td class="matchtable1">
-					<input type="submit" name="resyes" id="res"><label for="resyes" id="reslab">Accept</label>
-					<input type="submit" name="resno" id="res"><label for="resno" id="reslab">Decline</label>
-				</td>
+						<td class="matchtable1">
+							<input type="submit" name="resyes" id="res"><label for="resyes" id="reslab">Accept</label>
+							<input type="submit" name="resno" id="res"><label for="resno" id="reslab">Decline</label>
 				<?php
 					} else if ($rows['Response'] === 'Accepted'){
 				?>
@@ -72,10 +71,8 @@
 					} else {
 				?>
 						<td class="matchtable1"><?php echo $rows['Response'];?>
-				<?php
+			<?php
 					}
-				?>
-			<?php 
 			$today = date('Y-m-d');
 			$res = mysqli_query($conn, $invites);
 			$rows=mysqli_fetch_assoc($res);
@@ -89,6 +86,7 @@
 			</td>
 			</form>
 			</tr>
+			</table>
 		<?php
 		}
         if(isset($_POST['resyes'])) {
@@ -124,7 +122,6 @@
 			}
         }
     ?>
-	</table>
 	<p style="color: #676667; text-align: center;font-size: 12px; padding: 30px;">*Please be aware that your name and number will be sent to the invitee upon acceptance of an invitation.</p>
 	<h1>Invitations you have sent:</h1>
 	<table id="invitestable">
@@ -150,7 +147,7 @@
 				<?php
 				} else if ($rows['Response'] === 'No Reply') {
 				?>
-					<br><input type="button" onclick="window.open('mailto:<?php echo $rows['Invitee_mail'];?>?subject=Invitation for a Puppy Play Date&body=Hi <?php echo $rows['Invitee_name'];?>!%0D%0A%0D%0AYour dog has recieved an invitation to play! Please login to your BetterPets Puppy Play Dates account to view details and respond (http://localhost/ICTWEB517/invitations.php).%0D%0A%0D%0ASincerely,%0D%0AThe BetterPets Team');" value="Send Email" /></td>	
+					<br><input type="button" onclick="window.open('mailto:<?php echo $rows['Invitee_mail'];?>?subject=Invitation for a Puppy Play Date&body=Hi <?php echo $rows['Invitee_name'];?>!%0D%0A%0D%0AYour dog has recieved an invitation to play! Please login to your BetterPets Puppy Play Dates account to view details and respond (http://localhost/ICTWEB517/homepage.php).%0D%0A%0D%0ASincerely,%0D%0AThe BetterPets Team');" value="Send Email" /></td>	
 			</tr>
 			<?php
 				}
