@@ -12,7 +12,9 @@ if (isset($_POST['first_name']) || isset($_POST['surname']) || isset($_POST['pas
             $surname = $_POST['surname'];
             $password = $_POST['password'];
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            $phone = $_POST['phone'];
+            $ph = $_POST['phone'];
+            $phone = preg_filter('/^/', '61', $ph);
+            echo $phone;
             $email = $_POST['e-mail'];
             $suburb = $_POST['suburb'];
             $postcode = $_POST['postcode'];

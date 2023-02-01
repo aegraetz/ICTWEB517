@@ -420,13 +420,13 @@ th {
 
   .form-container {
 	width: 350px;
-	height: 615px;
+	height: 550px;
 	padding: 10px;
 	overflow: auto;
 	background-color: rgba(225, 225, 225, 0.852);
   }
   
-  label:not(#res, #reslab){
+  label:not(#res, #reslab, #pdlabel){
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	font-size: 14px;
 	color:#3f3f3f;
@@ -632,6 +632,7 @@ td.matchtable {
  	justify-content: center;
 	margin: auto;
   }
+  
 .invite-container {
 	width: 300px;
 	height: 350px;

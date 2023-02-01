@@ -15,12 +15,15 @@
 	session_start();
 	$breeds = "SELECT User_Firstname, Dog_Name, Dog_Image, Phone_no FROM user_info
 				WHERE Dog_Breed = '{$_SESSION['dogbreed']}' && Phone_no != '{$_SESSION["phone"]}'";
+	$res1 = mysqli_query($conn, $breeds);
 
 	$ages = "SELECT User_Firstname, Dog_Name, Dog_Image, Phone_no FROM user_info
 				WHERE Dog_Age = '{$_SESSION['dogage']}' && Phone_no != '{$_SESSION["phone"]}'";
+	$res2 = mysqli_query($conn, $ages);
 
 	$genders = "SELECT User_Firstname, Dog_Name, Dog_Image, Phone_no FROM user_info
 					WHERE Dog_Gender = '{$_SESSION['doggender']}' && Phone_no != '{$_SESSION["phone"]}'";
+	$res3 = mysqli_query($conn, $genders);
 	?>
 	<title>Puppy Play Dates</title>
 </head>
@@ -60,14 +63,14 @@
 				<th colspan="2" class="matchtable">Matches by Breed</th>
 			</tr>
 			<?php
-			$res1 = mysqli_query($conn, $breeds);
 			while ($rows=mysqli_fetch_assoc($res1)) {
 			?>
 			<tr>
 				<td class="matchtable"><?php echo $rows['User_Firstname'];?>'s dog <?php echo $rows['Dog_Name'];?>
 				<br><?php echo"<img src='".$rows['Dog_Image']."' height='200px'>"?></td>
 				<td class="matchtable"><button class="selectmatch"
-				onclick="selectMatch(<?php echo $rows['Phone_no'];?>)">Invite for a play</button>
+				<?php $id = $rows['Phone_no'];?>
+				onclick='selectMatch(<?php echo "{$id}";?>)'>Invite for a play</button>
 				</tr>
 			<?php
 			}
@@ -78,7 +81,6 @@
 			<th colspan="2" class="matchtable">Matches by Age</th>
 			</tr>
 			<?php
-			$res2 = mysqli_query($conn, $ages);
 			while ($rows=mysqli_fetch_assoc($res2)) {
 			?>
 			<tr>
@@ -96,14 +98,13 @@
 			<th colspan="2" class="matchtable">Matches by Gender</th>
 			</tr>
 			<?php
-			$res3 = mysqli_query($conn, $genders);
 			while ($rows=mysqli_fetch_assoc($res3)) {
 			?>
 			<tr>
 				<td class="matchtable"><?php echo $rows['User_Firstname'];?>'s dog <?php echo $rows['Dog_Name'];?>
 				<br><?php echo"<img src='".$rows['Dog_Image']."' height='200px'>"?></td>
 				<td class="matchtable"><button class="selectmatch"
-				onclick="selectMatch(<?php echo $rows['Phone_no'];?>)">Invite for a play</button>
+				onclick="selectMatch('+'<?php echo $rows['Phone_no'];?>)">Invite for a play</button>
 			</tr>
 			<?php
 			}

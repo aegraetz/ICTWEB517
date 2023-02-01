@@ -20,9 +20,9 @@
 	} else {
 	  echo '<script>console.log("Record check successful"); </script>';
 	}
-	$invites = "SELECT ID, Inviter_name, Inviter_no, Inviter_dog, Play_date, LEFT(Play_time, 5)as F_Play_time, Response FROM playdates
+	$invites = "SELECT ID, Inviter_name, RIGHT(Inviter_no, 10) as Inviter_ph, Inviter_dog, Play_date, LEFT(Play_time, 5)as F_Play_time, Response FROM playdates
 				WHERE Invitee_name = '{$_SESSION["username"]}'";
-	$inv = "SELECT Invitee_name, Invitee_no, Invitee_mail, Play_date, LEFT(Play_time, 5) as F_Play_time, Response FROM playdates
+	$inv = "SELECT Invitee_name, RIGHT(Invitee_no, 10) as Invitee_ph, Invitee_mail, Play_date, LEFT(Play_time, 5) as F_Play_time, Response FROM playdates
 					WHERE Inviter_name = '{$_SESSION["username"]}'";
 	?>
 	<title>Puppy Play Dates</title>
@@ -39,15 +39,13 @@
 		<h1>Here are <?php echo $_SESSION["dogname"];?>'s invitations for play dates:</h1>
 	</div>
 	<table id="invitedtable">
-		<?php
-		$res = mysqli_query($conn, $invites);
-		?>
 			<tr>
 				<th class="matchtable">Who?</th>
 				<th class="matchtable">When?</th>
 				<th class="matchtable">Respond</th>
 		</tr>
 		<?php
+		$res = mysqli_query($conn, $invites);
 		while ($rows=mysqli_fetch_assoc($res)) {
 		?>
 			<tr>
@@ -55,7 +53,7 @@
 				<td class="matchtable1"><?php echo $rows['Inviter_name'];?>'s dog <br><?php echo $rows['Inviter_dog'];?>
 				would like to play</td>
 				<input type="hidden" name="inviter" value=<?php echo $rows['Inviter_name'];?>>
-				<input type="hidden" name="inviter_no" value=<?php echo $rows['Inviter_no'];?>>
+				<input type="hidden" name="inviter_ph" value=<?php echo $rows['Inviter_ph'];?>>
 				<td class="matchtable1"> <?php echo $rows['Play_date'];?><br>at <?php echo $rows['F_Play_time'];?></td>
 				<input type="hidden" name="date" value=<?php echo $rows['Play_date'];?>>
 				<?php
@@ -69,7 +67,7 @@
 					} else if ($rows['Response'] === 'Accepted'){
 				?>
 						<td class="matchtable1"><?php echo $rows['Response'];?>
-						<br>(<?php echo $rows['Inviter_name'];?>'s phone<br> no:<?php echo $rows['Inviter_no'];?>)
+						<br>(<?php echo $rows['Inviter_name'];?>'s phone<br> no:<?php echo $rows['Inviter_ph'];?>)
 				<?php
 					} else {
 				?>
@@ -77,7 +75,6 @@
 				<?php
 					}
 				?>
-			</form>
 			<?php 
 			$today = date('Y-m-d');
 			$res = mysqli_query($conn, $invites);
@@ -90,21 +87,22 @@
 			}
 			?>
 			</td>
+			</form>
 			</tr>
 		<?php
 		}
         if(isset($_POST['resyes'])) {
 			if(isset($_POST['inviter']) || isset($_POST['inviter_no']) || isset($_POST['date'])) {
-			$inviter= $_POST["inviter"];
-			$inviter_no= $_POST["inviter_no"];
-			$day= $_POST["date"];
+			$inviter= $_POST['inviter'];
+			$inviter_ph= $_POST['inviter_ph'];
+			$day= $_POST['date'];
 			} else {
 				echo '<script>alert("Something went wrong!");</script>';
 			}			
 			$query= "UPDATE playdates SET Response = 'Accepted' WHERE Inviter_name = '{$inviter}' && Play_date = '{$day}'";
 			if (mysqli_query($conn, $query)) {
 				echo '<script>console.log("Success");
-				alert("Invitation accepted! Please feel free to contact ' . $inviter . ' by getting in touch on ph:' . $inviter_no . '");
+				alert("Invitation accepted! Please feel free to contact ' . $inviter . ' by getting in touch on ph:' . $inviter_ph . '");
 				location.href="http://localhost/ICTWEB517/invitations.php";</script>';
 			} else {
 				echo '<script>alert("Error");</script>';
@@ -112,8 +110,8 @@
 		}
         if(isset($_POST['resno'])) {
 			if(isset($_POST['inviter']) || isset($_POST['date'])) {
-            $inviter= $_POST["inviter"];
-			$day= $_POST["date"];
+            $inviter= $_POST['inviter'];
+			$day= $_POST['date'];
 			} else {
 				echo '<script>alert("Something went wrongs!");</script>';
 			}			
@@ -148,7 +146,7 @@
 				<?php 
 				if ($rows['Response'] === 'Accepted') {
 				?>
-					<br>(<?php echo $rows['Invitee_name'];?>'s phone<br> no:<?php echo $rows['Invitee_no'];?>)</td>	
+					<br>(<?php echo $rows['Invitee_name'];?>'s phone<br> no:<?php echo $rows['Invitee_ph'];?>)</td>	
 				<?php
 				} else if ($rows['Response'] === 'No Reply') {
 				?>

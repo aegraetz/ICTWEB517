@@ -155,6 +155,7 @@ function pullInfo(n) {
 
 function selectMatch(n) {
   var id = n;
+  alert(id);
 	document.getElementById("inviteForm").style.visibility = "visible";
   document.getElementById("inviteeid").setAttribute('value', id);
   }

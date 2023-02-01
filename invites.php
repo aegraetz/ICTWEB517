@@ -20,6 +20,9 @@ $result = mysqli_query($conn, $inviteeinfo);
 $row = mysqli_fetch_assoc($result);
 $invitee = $row['User_Firstname'];
 $email = $row['Email'];
+echo $invitee_no;
+echo $invitee;
+echo $email;
 $date_created = date('d-m-y');
 $response = "No Reply";
 $query = "INSERT INTO playdates (Inviter_name, Inviter_no, Play_date, Play_time, Invitee_name,
@@ -28,9 +31,9 @@ $query = "INSERT INTO playdates (Inviter_name, Inviter_no, Play_date, Play_time,
 if (mysqli_query($conn, $query)) {
     echo '<script>console.log("Success");
     alert("Success! Invitation has been booked, please continue to the invitations page and press the send email button to notify your play date.");
-    location.href="http://localhost/ICTWEB517/invitations.php";</script>';
+    location.href= "http://localhost/ICTWEB517/invitations.php"</script>';
 } else {
-    echo '<script>console.log("Error: " . mysqli_error($conn));
-    location.href= "http://localhost/ICTWEB517/playdate.php"</script>';
+    echo '<script>alert("Error");
+    </script>';
 }
 ?>

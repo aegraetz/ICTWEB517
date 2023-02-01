@@ -60,7 +60,7 @@
 		<form class="form-container" action="user.php" method="POST" enctype='multipart/form-data'>
 			<button type="button" class="cancel" onclick="closeForm()">x</button><br><br>
 			<button type="button" class="btn" onclick="loginForm()">Log In</button>
-			<h1>Create Account</h1>
+			<h1 style="font-size: 25px;">Create a Puppy Play Date Account</h1>
 			<label for="first_name"><b>First Name:</b></label><br>
 			<input type="text" placeholder="Enter your first name" name="first_name" required><br>
 			<label for="surname"><b>Surname:</b></label><br>
@@ -69,7 +69,7 @@
 			<input type="password" placeholder="********" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" onfocus="passwordpopup()" onblur="passwordhide()" required><br>
 			<p class="passm" id="passmessage">Password must contain uppercase & lowercase letters, a symbol and it must be 6 characters long</p>
 			<label for="phone"><b>Phone Number:</b></label><br>
-			<input type="tel" placeholder="xxxx xxx xxx" name="phone" pattern="[0-9]{4} [0-9]{3} [0-9]{3}"required><br>
+			<input type="tel" placeholder="0400123456" name="phone" pattern="[0]{1}[0-9]{9}"required><br>
 			<label for="e-mail"><b>E-mail:</b></label><br>
 			<input type="email" placeholder="jon@mail.com" name="e-mail" size="30" required><br>
 			<label for="suburb"><b>Suburb:</b></label><br>

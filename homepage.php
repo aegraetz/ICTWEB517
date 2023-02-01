@@ -38,7 +38,7 @@
 		<form class="form-container" action="user.php" method="POST" enctype='multipart/form-data'>
 			<button type="button" class="cancel" onclick="closeForm()">x</button><br><br>
 			<button type="button" class="btn" onclick="loginForm()">Log In</button>
-			<h1>Create Account</h1>
+			<h1 style="font-size: 25px;">Create a Puppy Play Date Account</h1>
 			<label for="first_name"><b>First Name:</b></label><br>
 			<input type="text" placeholder="Enter your first name" name="first_name" required><br>
 			<label for="surname"><b>Surname:</b></label><br>
