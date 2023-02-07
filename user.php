@@ -4,7 +4,7 @@ ini_set('log_errors', 'on');
 ini_set('display_startup_errors', 'on');
 ini_set('error_reporting', E_ALL);
 include "connect.php";
-
+// populate the user_info table in the database with the variables from the sign up form
 if (isset($_POST['first_name']) || isset($_POST['surname']) || isset($_POST['password']) || isset($_POST['phone']) ||
     isset($_POST['email']) || isset($_POST['suburb']) || isset($_POST['postcode']) || isset($_POST['dog_name']) ||
     isset($_POST['dog_breed']) || isset($_POST['dog_age']) || isset($_POST['dog_gender']) || isset($_POST['image'])) {
@@ -14,7 +14,6 @@ if (isset($_POST['first_name']) || isset($_POST['surname']) || isset($_POST['pas
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $ph = $_POST['phone'];
             $phone = preg_filter('/^/', '61', $ph);
-            echo $phone;
             $email = $_POST['e-mail'];
             $suburb = $_POST['suburb'];
             $postcode = $_POST['postcode'];
@@ -61,8 +60,8 @@ if (mysqli_query($conn, $query1)) {
     alert("Success! Please use these details to log in");
     location.href="http://localhost/ICTWEB517/homepage.php#mainimage";</script>';
 } else {
-    echo '<script>console.log("Error: " . mysqli_error($conn));
-    location.href= "http://localhost/ICTWEB517/homepage.php#mainimage"</script>';
+    echo '<script>console.log("Error");
+    location.href="http://localhost/ICTWEB517/homepage.php#mainimage";</script>';
 }
 
 ?>

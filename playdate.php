@@ -13,6 +13,7 @@
 	ini_set('error_reporting', E_ALL);
 	include "connect.php";
 	session_start();
+	//queries for the various matches (by breed, by ages and by genders)
 	$breeds = "SELECT User_Firstname, Dog_Name, Dog_Image, Phone_no FROM user_info
 				WHERE Dog_Breed = '{$_SESSION['dogbreed']}' && Phone_no != '{$_SESSION["phone"]}'";
 	$res1 = mysqli_query($conn, $breeds);
@@ -34,6 +35,7 @@
 		<a href="invitations.php" class= "pdnavlink">invitations</a>
 		<a class="pdname">Welcome, <?php echo $_SESSION["username"]; ?>!</a>
 	</nav>
+	<!-- pop up for adding an invitation to the playdate table in the database -->
 	<div class="invite-popup" id="inviteForm">
 		<form class="invite-container" action="invites.php" method="POST">
 			<button type="button" class="pdcancel" onclick="closeMatch()">x</button>
@@ -54,10 +56,12 @@
 	</div>
 		<h5> Pick a play mate for <?php  echo $_SESSION["dogname"]; ?> based on one of the following options:</h5>
 		<div class="sortdogs">
+		<!-- button trigger the corresponding table to appear on the page -->
 		<button class="selectmatch" onclick="pullInfo(1)">Same Breed </button>
 		<button class="selectmatch" onclick="pullInfo(2)">Same Age </button>
 		<button class="selectmatch" onclick="pullInfo(3)">Same Gender </button>
 		</div>
+		<!-- table for each of the 3 match options (breed, age and gender) -->
 		<table id="breedtable">
 			<tr>
 				<th colspan="2" class="matchtable">Matches by Breed</th>
@@ -68,8 +72,8 @@
 			<tr>
 				<td class="matchtable"><?php echo $rows['User_Firstname'];?>'s dog <?php echo $rows['Dog_Name'];?>
 				<br><?php echo"<img src='".$rows['Dog_Image']."' height='200px'>"?></td>
+				<!-- button to trigger the invitations form pop up -->
 				<td class="matchtable"><button class="selectmatch"
-				<?php $id = $rows['Phone_no'];?>
 				onclick='selectMatch(<?php echo "{$id}";?>)'>Invite for a play</button>
 				</tr>
 			<?php
@@ -86,6 +90,7 @@
 			<tr>
 				<td class="matchtable"><?php echo $rows['User_Firstname'];?>'s dog <?php echo $rows['Dog_Name'];?>
 				<br><?php echo"<img src='".$rows['Dog_Image']."' height='200px'>"?></td>
+				<!-- button to trigger the invitations form pop up -->
 				<td class="matchtable"><button class="selectmatch"
 				onclick="selectMatch(<?php echo $rows['Phone_no'];?>)">Invite for a play</button>
 			</tr>
@@ -103,6 +108,7 @@
 			<tr>
 				<td class="matchtable"><?php echo $rows['User_Firstname'];?>'s dog <?php echo $rows['Dog_Name'];?>
 				<br><?php echo"<img src='".$rows['Dog_Image']."' height='200px'>"?></td>
+				<!-- button to trigger the invitations form pop up -->
 				<td class="matchtable"><button class="selectmatch"
 				onclick="selectMatch('+'<?php echo $rows['Phone_no'];?>)">Invite for a play</button>
 			</tr>

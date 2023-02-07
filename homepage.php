@@ -8,7 +8,10 @@
 	<link rel="stylesheet" href="https://use.typekit.net/xcc5lpj.css">
 	<title>Home</title>
 	<?php
+	//log out when this page is loaded
 	session_destroy();
+	//connect or create the database and tables
+	include "connect.php";
 	?>
 </head>
 <body>
@@ -20,10 +23,12 @@
 		<a href="meetus.html" class="navlink">meet us</a>
 	</nav>
 	<div class="landing">
+		<!-- pressing the button on this image will change the users preference to cat person, dog person or both -->
 		<img src="images/maindog.jpg" id="mainimage">
 		<bu type="button" id="userchoice" onclick="changeusertype()"><img src="images/dogwhite.png" height="25px"> or <img src="images/catwhite.png" height="25px"> or <img src="images/cdw.png" height="25px">?</button>
 	</div>
 	<div class="options">
+		<!-- navigation to other pages -->
 		<div class="column first">
 			<a href="findus.html"><img src="images/find.png" class="imagelink"></a>
 		</div>
@@ -34,6 +39,7 @@
 			<a href="meetus.html"><img src="images/meet.png" class="imagelink"></a>
 		</div>
 	</div>
+	<!-- sign up and log in pop up form to join the puppy play dates service-->
 	<div class="form-popup" id="myForm">
 		<form class="form-container" action="user.php" method="POST" enctype='multipart/form-data'>
 			<button type="button" class="cancel" onclick="closeForm()">x</button><br><br>

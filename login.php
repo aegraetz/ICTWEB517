@@ -4,6 +4,7 @@ ini_set('log_errors', 'on');
 ini_set('display_startup_errors', 'on');
 ini_set('error_reporting', E_ALL);
 include "connect.php";
+//verifying the password and setting session variables for the user
 if (isset($_POST['e-mail']) || isset($_POST['password'])) {
 			$loginemail = $_POST['e-mail'];
             $loginpassword = $_POST['password'];
