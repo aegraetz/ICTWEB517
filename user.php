@@ -6,7 +6,7 @@ ini_set('error_reporting', E_ALL);
 include "connect.php";
 // populate the user_info table in the database with the variables from the sign up form
 if (isset($_POST['first_name']) || isset($_POST['surname']) || isset($_POST['password']) || isset($_POST['phone']) ||
-    isset($_POST['email']) || isset($_POST['suburb']) || isset($_POST['postcode']) || isset($_POST['dog_name']) ||
+    isset($_POST['e-mail']) || isset($_POST['suburb']) || isset($_POST['postcode']) || isset($_POST['dog_name']) ||
     isset($_POST['dog_breed']) || isset($_POST['dog_age']) || isset($_POST['dog_gender']) || isset($_POST['image'])) {
             $first_name = $_POST['first_name'];
             $surname = $_POST['surname'];
@@ -61,7 +61,7 @@ if (mysqli_query($conn, $query1)) {
     location.href="http://localhost/ICTWEB517/homepage.php#mainimage";</script>';
 } else {
     echo '<script>console.log("Error");
-    location.href="http://localhost/ICTWEB517/homepage.php#mainimage";</script>';
+    </script>';
 }
 
 ?>

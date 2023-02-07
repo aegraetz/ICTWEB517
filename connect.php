@@ -27,7 +27,7 @@ else {
       User_Firstname VARCHAR(45) NOT NULL,
       User_Surname VARCHAR(45) NOT NULL,
       User_Password VARCHAR(255) NOT NULL,
-      Phone_no VARCHAR(10) PRIMARY KEY NOT NULL,
+      Phone_no VARCHAR(13) PRIMARY KEY NOT NULL,
       Email VARCHAR(45) NOT NULL,
       Suburb VARCHAR(45) NOT NULL,
       Postcode INT(4) NOT NULL,
