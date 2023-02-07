@@ -26,8 +26,11 @@
 	//queries to gather the data needed for the users invitations tables
 	$invites = "SELECT ID, Inviter_name, RIGHT(Inviter_no, 10) as Inviter_ph, Inviter_dog, Play_date, LEFT(Play_time, 5)as F_Play_time, Response FROM playdates
 				WHERE Invitee_name = '{$_SESSION["username"]}'";
+	$res = mysqli_query($conn, $invites);
 	$inv = "SELECT Invitee_name, RIGHT(Invitee_no, 10) as Invitee_ph, Invitee_mail, Play_date, LEFT(Play_time, 5) as F_Play_time, Response FROM playdates
 					WHERE Inviter_name = '{$_SESSION["username"]}'";
+	$res2 = mysqli_query($conn, $inv);
+	$today =date('Y-m-d');
 	?>
 	<title>Puppy Play Dates</title>
 </head>
@@ -50,96 +53,68 @@
 				<th class="matchtable">Respond</th>
 		</tr>
 		<?php
-		$res = mysqli_query($conn, $invites);
 		while ($rows=mysqli_fetch_assoc($res)) {
 		?>
 			<tr>
-			<form method="post">
-				<td class="matchtable1"><?php echo $rows['Inviter_name'];?>'s dog <br><?php echo $rows['Inviter_dog'];?>
+			<td class="matchtable1"><?php echo $rows['Inviter_name'];?>'s dog <br><?php echo $rows['Inviter_dog'];?>
 				would like to play
+				<form method="post" action="response.php">
 				<input type="hidden" name="inviter" value=<?php echo $rows['Inviter_name'];?>>
 				<input type="hidden" name="inviter_ph" value=<?php echo $rows['Inviter_ph'];?>></td>
 				<td class="matchtable1"> <?php echo $rows['Play_date'];?><br>at <?php echo $rows['F_Play_time'];?>
 				<input type="hidden" name="date" value=<?php echo $rows['Play_date'];?>></td>
 				<?php
-					if ($rows['Response'] === 'No Reply') {
+				if ($rows['Response'] === 'No Reply') {
 				?>
 				<!-- if the invitations has not been responded to yet buttons appear allowing response -->
-						<td class="matchtable1">
-							<input type="submit" name="resyes" id="res"><label for="resyes" id="reslab">Accept</label>
-							<input type="submit" name="resno" id="res"><label for="resno" id="reslab">Decline</label>
-				<?php
-					} else if ($rows['Response'] === 'Accepted'){
-				?>
-				<!-- where an invitation has been accepted, the inviters details are listed -->
-						<td class="matchtable1"><?php echo $rows['Response'];?>
-						<br>(<?php echo $rows['Inviter_name'];?>'s phone<br> no:<?php echo $rows['Inviter_ph'];?>)
-				<?php
-					} else if ($rows['Response'] === 'Declined'){
-				?>
-				<!-- where an invitation has been declined, the response is shown -->
-						<td class="matchtable1"><?php echo $rows['Response'];?>
-			<?php
-					}
-			// where the date of the playdate has passed, a delete button is listed for the user to press
-			$today = date('Y-m-d');
-			$res = mysqli_query($conn, $invites);
-			$rows=mysqli_fetch_assoc($res);
-			$play = $rows['Play_date'];
-			if ($today >= $play) {
-				?>
-			<br><a id="remove_row" href="delete.php?ID=<?php echo $rows['ID']; ?>">Delete</a>
-			<?php
-			}
-			?>
+				<td class="matchtable1">
+					<input type="submit" name="resyes" id="res"><label for="resyes" id="reslab">Accept</label>
+					<input type="submit" name="resno" id="res"><label for="resno" id="reslab">Decline</label>
+				</form>
 			</td>
-			</form>
-			</tr>
-		<?php
+			<?php
+				} else if ($rows['Response'] === 'Accepted'){
+			?>
+				<!-- where an invitation has been accepted, the inviters details are listed -->
+				<td class="matchtable1"><?php echo $rows['Response'];?>
+				<br>(<?php echo $rows['Inviter_name'];?>'s phone<br> no:<?php echo $rows['Inviter_ph'];?>)
+				<?php
+					// where the date of the playdate has passed, a delete button is listed for the user to press
+					$play = $rows['Play_date'];
+					if ($today >= $play) {
+					?>
+					<br><a id="remove_row" href="delete.php?ID=<?php echo $rows['ID']; ?>">Delete</a>
+					<?php
+					} 
+				?>	
+				</td>
+			<?php
+				} else {
+			?>
+				<!-- where an invitation has been declined, the response is shown -->
+					<td class="matchtable1"><?php echo $rows['Response'];?>
+					<?php
+					// where the date of the playdate has passed, a delete button is listed for the user to press
+					$play = $rows['Play_date'];
+					if ($today >= $play) {
+					?>
+					<br><a id="remove_row" href="delete.php?ID=<?php echo $rows['ID']; ?>">Delete</a>
+					<?php
+					} 
+					?>
+					</td>
+			<?php
+				}	
+				?>
+				</tr>
+				<?php
 		}
-		//if a response was set to accept the data in the database is changed to reflect this
-        if(isset($_POST['resyes'])) {
-			if(isset($_POST['inviter']) || isset($_POST['inviter_no']) || isset($_POST['date'])) {
-			$inviter= $_POST['inviter'];
-			$inviter_ph= $_POST['inviter_ph'];
-			$day= $_POST['date'];
-			} else {
-				echo '<script>alert("Something went wrong!");</script>';
-			}			
-			$query= "UPDATE playdates SET Response = 'Accepted' WHERE Inviter_name = '{$inviter}' && Play_date = '{$day}'";
-			if (mysqli_query($conn, $query)) {
-				echo '<script>console.log("Success");
-				alert("Invitation accepted! Please feel free to contact ' . $inviter . ' by getting in touch on ph:' . $inviter_ph . '");
-				location.href="http://localhost/ICTWEB517/invitations.php";</script>';
-			} else {
-				echo '<script>alert("Error");</script>';
-			}
-		}
-		//if a response was set to decline the data in the database is changed to reflect this
-        if(isset($_POST['resno'])) {
-			if(isset($_POST['inviter']) || isset($_POST['date'])) {
-            $inviter= $_POST['inviter'];
-			$day= $_POST['date'];
-			} else {
-				echo '<script>alert("Something went wrongs!");</script>';
-			}			
-			$query= "UPDATE playdates SET Response = 'Declined' WHERE Inviter_name = '{$inviter}' && Play_date = '{$day}'";
-			if (mysqli_query($conn, $query)) {
-				echo '<script>console.log("Success");
-				location.href="http://localhost/ICTWEB517/invitations.php";</script>';
-			} else {
-				echo '<script>alert("Error");</script>';
-			}
-        }
-    ?>
+    	?>
 	</table>
 	<p style="color: #676667; text-align: center;font-size: 12px; padding: 30px;">*Please be aware that your name and number will be sent to the invitee upon acceptance of an invitation.</p>
 	<h1>Invitations you have sent:</h1>
 	<!-- table for invitations that have been sent by the user to other users -->
 	<table id="invitestable">
-		<?php
-		$res2 = mysqli_query($conn, $inv);
-		?>
 		<tr>
 		<th class="matchtable1">Who?</th>
 		<th class="matchtable1">When?</th>
