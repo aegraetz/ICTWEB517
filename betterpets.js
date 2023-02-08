@@ -30,28 +30,47 @@
 
 /* IMAGE CHANGE DEPENDING ON USER PREFERENCE */
 
+var catPerson = {
+  catuser: "catperson",
+  caticon: "images/catw.png",
+  catmain: "images/maincat.jpg",
+}
+
+var dogPerson = {
+  doguser: "dogperson",
+  dogicon: "images/dogw.png",
+  dogmain: "images/maindog.jpg",
+}
+
+var bothPerson = {
+  cduser: "both",
+  cdicon: "images/cd.png",
+  cdmain: "images/catdog.jpg",
+}
+
 window.onload = () => {
 	const user = localStorage.getItem("usertype");
 	var Image_Id = document.getElementById('mainimage');
-	if (user === "catperson") {
-		Image_Id.src = "images/maincat.jpg";
+	if (user === catPerson.catuser) {
+		Image_Id.src = catPerson.catmain;
 	}
-	else if (user === "dogperson") {
-		Image_Id.src = "images/maindog.jpg";
+	else if (user === dogPerson.doguser) {
+		Image_Id.src = dogPerson.dogmain;
 	}
 	else{
-		Image_Id.src = "images/catdog.jpg";
+		Image_Id.src = bothPerson.cdmain;
 	}
 }
+
 
 function changeusertype() {
 	var Image_Id = document.getElementById('mainimage');
 	if (Image_Id.src.match("images/maindog.jpg")) {
-		Image_Id.src = "images/maincat.jpg";
+		Image_Id.src = catPerson.catmain;
 		localStorage.setItem("usertype", "catperson");
 	}
 	else if (Image_Id.src.match("images/maincat.jpg")) {
-		Image_Id.src = "images/catdog.jpg";
+		Image_Id.src = bothPerson.cdmain;
 		localStorage.setItem("usertype", "both");
 	}
 	else {
@@ -68,8 +87,8 @@ function iconchange() {
 	if (user === "dogperson") {
 		icon.src = "images/dogw.png";
 	}
-	else if (user === "catperson") {
-		icon.src = "images/catw.png";
+	else if (user === catPerson.catuser) {
+		icon.src = catPerson.caticon;
 	}
 	else {
 		icon.src = "images/cd.png";
