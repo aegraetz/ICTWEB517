@@ -30,6 +30,7 @@
 
 /* IMAGE CHANGE DEPENDING ON USER PREFERENCE */
 
+// objects created for each user "type" containing properties for the icon and main image pertaining to the user type
 var catPerson = {
   catuser: "catperson",
   caticon: "images/catw.png",
@@ -48,6 +49,7 @@ var bothPerson = {
   cdmain: "images/catdog.jpg",
 }
 
+//upon loading of the homapage, change the picture set on the home screen depending on the user type
 window.onload = () => {
 	const user = localStorage.getItem("usertype");
 	var Image_Id = document.getElementById('mainimage');
@@ -62,25 +64,26 @@ window.onload = () => {
 	}
 }
 
-
+//function to assign user type and keep it in local storage
 function changeusertype() {
 	var Image_Id = document.getElementById('mainimage');
 	if (Image_Id.src.match("images/maindog.jpg")) {
 		Image_Id.src = catPerson.catmain;
-		localStorage.setItem("usertype", "catperson");
+		localStorage.setItem("usertype", catPerson.catuser);
 	}
 	else if (Image_Id.src.match("images/maincat.jpg")) {
 		Image_Id.src = bothPerson.cdmain;
-		localStorage.setItem("usertype", "both");
+		localStorage.setItem("usertype", bothPerson.cduser);
 	}
 	else {
 		Image_Id.src = "images/maindog.jpg";
-		localStorage.setItem("usertype", "dogperson");
+		localStorage.setItem("usertype", dogPerson.doguser);
 	}
 }  
 
 document.getElementById("icon").addEventListener("load", iconchange());
 
+//function to change the icon on each page according to user type
 function iconchange() {
 	var icon = document.getElementById("icon");
 	const user = localStorage.getItem("usertype");

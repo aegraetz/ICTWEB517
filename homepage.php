@@ -23,7 +23,8 @@
 		<a href="meetus.html" class="navlink">meet us</a>
 	</nav>
 	<div class="landing">
-		<!-- pressing the button on this image will change the users preference to cat person, dog person or both -->
+		<!-- pressing the button on this image will change the users preference to cat person, dog person or both 
+		this information is then kept in local storage to trigger a change in icons on each page depending on the user type-->
 		<img src="images/maindog.jpg" id="mainimage">
 		<bu type="button" id="userchoice" onclick="changeusertype()"><img src="images/dogwhite.png" height="25px"> or <img src="images/catwhite.png" height="25px"> or <img src="images/cdw.png" height="25px">?</button>
 	</div>
