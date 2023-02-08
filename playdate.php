@@ -74,11 +74,11 @@
 				<br><?php echo"<img src='".$rows['Dog_Image']."' height='200px'>"?></td>
 				<!-- button to trigger the invitations form pop up -->
 				<td class="matchtable"><button class="selectmatch"
-				onclick='selectMatch(<?php echo "{$id}";?>)'>Invite for a play</button>
+				onclick="selectMatch(<?php echo $rows['Phone_no'];?>)">Invite for a play</button>
 				</tr>
 			<?php
 			}
-			?>
+			?>location.href=
 		</table>
 		<table id="agetable">
 			<tr>
