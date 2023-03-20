@@ -78,7 +78,7 @@
 				</tr>
 			<?php
 			}
-			?>location.href=
+			?>
 		</table>
 		<table id="agetable">
 			<tr>
